@@ -1,69 +1,50 @@
-/* ===== HOA MAI RƠI ===== */
-function createFlower() {
-  const flower = document.createElement("div");
-  flower.className = "flower";
-  flower.innerText = "🌸";
-  flower.style.left = Math.random() * 100 + "vw";
-  flower.style.animationDuration = 3 + Math.random() * 5 + "s";
-  flower.style.fontSize = 20 + Math.random() * 20 + "px";
-  document.body.appendChild(flower);
-
-  setTimeout(() => flower.remove(), 8000);
-}
-setInterval(createFlower, 300);
-
-/* ===== COUNTDOWN ===== */
-const countdown = document.getElementById("countdown");
-const tet = new Date("2026-02-17T00:00:00");
-
-setInterval(() => {
-  const now = new Date();
-  const diff = tet - now;
-
-  if (diff <= 0) {
-    countdown.innerText = "🎆 Chúc Mừng Năm Mới 🎆";
-    return;
-  }
-
-  const d = Math.floor(diff / (1000 * 60 * 60 * 24));
-  const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
-  const m = Math.floor((diff / (1000 * 60)) % 60);
-  const s = Math.floor((diff / 1000) % 60);
-
-  countdown.innerText = `⏳ ${d} ngày ${h} giờ ${m} phút ${s} giây`;
-}, 1000);
-
-/* ===== NHẠC ===== */
-const music = document.getElementById("music");
-function toggleMusic() {
-  music.paused ? music.play() : music.pause();
-}
-
-/* ===== PHÁO HOA ===== */
 const canvas = document.getElementById("fireworks");
 const ctx = canvas.getContext("2d");
 
-function resizeCanvas() {
-  canvas.width = innerWidth;
-  canvas.height = innerHeight;
-}
-resizeCanvas();
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
 
-function firework() {
+let particles = [];
+
+function createFirework() {
   const x = Math.random() * canvas.width;
   const y = (Math.random() * canvas.height) / 2;
 
-  for (let i = 0; i < 50; i++) {
-    ctx.beginPath();
-    ctx.arc(x, y, 2, 0, Math.PI * 2);
-    ctx.fillStyle = `hsl(${Math.random() * 360},100%,60%)`;
-    ctx.fill();
+  for (let i = 0; i < 40; i++) {
+    particles.push({
+      x: x,
+      y: y,
+      vx: Math.random() * 6 - 3,
+      vy: Math.random() * 6 - 3,
+      life: 100,
+      color: `hsl(${Math.random() * 360}, 100%, 60%)`,
+    });
   }
 }
 
-setInterval(() => {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  firework();
-}, 700);
+function showWish() {
+  document.getElementById("wish").innerHTML =
+    "💖 Gia đình luôn mạnh khỏe, hạnh phúc và sum vầy 💖";
+}
 
-window.addEventListener("resize", resizeCanvas);
+function animate() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  particles.forEach((p, i) => {
+    p.x += p.vx;
+    p.y += p.vy;
+    p.life--;
+
+    ctx.fillStyle = p.color;
+    ctx.fillRect(p.x, p.y, 3, 3);
+
+    if (p.life <= 0) {
+      particles.splice(i, 1);
+    }
+  });
+
+  requestAnimationFrame(animate);
+}
+
+setInterval(createFirework, 700);
+animate();
