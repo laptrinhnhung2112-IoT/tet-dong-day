@@ -1,99 +1,89 @@
-/* ===== RESET ===== */
+/* Reset cơ bản */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+/* Toàn bộ trang */
 body {
-  font-family: "Be Vietnam Pro", sans-serif;
-  background: radial-gradient(circle, #ffcc00, #c40000);
+  height: 100vh;
+  font-family: "Segoe UI", sans-serif;
+  background: url("Anh-gia-dinh.jpg") no-repeat center center/cover;
   overflow: hidden;
-  color: white;
 }
 
-/* ===== MAIN BOX ===== */
-.container {
-  position: relative;
-  z-index: 10;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  padding: 20px;
-}
-
-.card {
-  background: rgba(255, 255, 255, 0.95);
-  color: #c40000;
-  padding: 30px 40px;
-  border-radius: 25px;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-  max-width: 500px;
-  width: 100%;
-}
-
-h1 {
-  font-size: 2.2rem;
-}
-
-.wish {
-  margin: 15px 0;
-  font-size: 1.2rem;
-}
-
-#countdown {
-  font-size: 1.3rem;
-  font-weight: bold;
-  margin-top: 15px;
-}
-
-/* ===== BUTTON ===== */
-button {
-  margin-top: 20px;
-  padding: 12px 25px;
-  font-size: 1rem;
-  background: #c40000;
-  color: white;
-  border: none;
-  border-radius: 30px;
-  cursor: pointer;
-}
-
-button:hover {
-  background: #ff9900;
-}
-
-/* ===== FLOWER ===== */
-.flower {
+/* Lớp phủ tối */
+.overlay {
   position: fixed;
-  top: -50px;
-  font-size: 30px;
-  animation: fall linear infinite;
-  z-index: 5;
-}
-
-@keyframes fall {
-  to {
-    transform: translateY(110vh) rotate(360deg);
-  }
-}
-
-/* ===== CANVAS ===== */
-canvas {
-  position: fixed;
-  top: 0;
-  left: 0;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
   z-index: 1;
 }
 
-/* ===== RESPONSIVE ===== */
-@media (max-width: 600px) {
-  h1 {
-    font-size: 1.8rem;
+/* Nội dung */
+.content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #fff;
+}
+
+/* Tiêu đề */
+h1 {
+  font-size: 50px;
+  color: #ffd700;
+  text-shadow: 0 0 10px red;
+  margin-bottom: 20px;
+}
+
+/* Đoạn văn */
+p {
+  font-size: 22px;
+  margin-bottom: 30px;
+}
+
+/* Nút */
+button {
+  padding: 12px 30px;
+  font-size: 18px;
+  background: red;
+  color: yellow;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  box-shadow: 0 0 15px gold;
+}
+
+button:hover {
+  background: #ff4500;
+}
+
+/* Lời chúc hiện ra */
+#wish {
+  margin-top: 25px;
+  font-size: 24px;
+  color: #00ffcc;
+  animation: fadeIn 1s ease-in-out;
+}
+
+/* Hiệu ứng */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
   }
-  .wish {
-    font-size: 1rem;
+  to {
+    opacity: 1;
+    transform: scale(1);
   }
+}
+
+/* Canvas pháo hoa */
+canvas {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
 }
