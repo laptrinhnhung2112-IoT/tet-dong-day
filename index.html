@@ -2,37 +2,32 @@
 <html lang="vi">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>🌸 Chúc Mừng Năm Mới 2026 🌸</title>
+    <title>Chúc Mừng Năm Mới</title>
 
-    <!-- FONT -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;700&display=swap"
-      rel="stylesheet"
-    />
-
-    <!-- CSS -->
+    <!-- Kết nối CSS -->
     <link rel="stylesheet" href="style.css" />
   </head>
-
   <body>
-    <canvas id="fireworks"></canvas>
+    <!-- Lớp phủ mờ -->
+    <div class="overlay"></div>
 
-    <div class="container">
-      <div class="card">
-        <h1>🎉 Chúc Mừng Năm Mới 2026 🎉</h1>
-        <p class="wish">An khang thịnh vượng<br />Vạn sự như ý</p>
-        <p id="countdown"></p>
-        <button onclick="toggleMusic()">🎵 Bật / Tắt Nhạc</button>
-      </div>
+    <!-- Nội dung chính -->
+    <div class="content">
+      <h1>🎉 Chúc Mừng Năm Mới 🎉</h1>
+      <p>
+        Kính chúc gia đình một năm mới <br />
+        An Khang – Thịnh Vượng – Vạn Sự Như Ý
+      </p>
+
+      <button onclick="showWish()">Nhận lời chúc 💌</button>
+
+      <div id="wish"></div>
     </div>
 
-    <!-- NHẠC -->
-    <audio id="music" autoplay loop>
-      <source src="music-tet.mp3" type="audio/mpeg" />
-    </audio>
+    <!-- Canvas pháo hoa -->
+    <canvas id="fireworks"></canvas>
 
-    <!-- JS -->
+    <!-- Kết nối JavaScript -->
     <script src="script.js"></script>
   </body>
 </html>
